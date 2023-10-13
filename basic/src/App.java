@@ -1,44 +1,20 @@
-import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * Interface can have fields, but they have to be constant
+ */
 public class App {
+    public static void main(String[] args) {
+        int max = MyConstants.MAX_VALUE;
+        String appName = MyConstants.APPLICATION_NAME;
+        
+        System.out.println("Max value: " + max);
+        System.out.println("Application name: " + appName);
+    }
+}
 
-	public static void main(String[] args) {
-		List<IsVehicle> vehicles = new ArrayList<>();
 
-		vehicles.add(new Jeep("Audi", 7, 240, 4));
-		vehicles.add(new Jeep("Suzuki", 5, 180, 4));
-		vehicles.add(new Jeep("Skoda", 5, 220, 4));
-		vehicles.add(new Hovercarft("SomeName", 8, 100, 8, 25));
-		vehicles.add(new Frigate("SooomeName", 10, 150, 75));
-
-		extracted(vehicles);
-
-	}
-
-	private static void extracted(List<IsVehicle> list) {
-
-		for (IsVehicle vehicle : list) {
-			if (vehicle instanceof Jeep) {
-				((Jeep) vehicle).drive();
-				((Jeep) vehicle).soundHorn();
-				System.out.println(((Jeep) vehicle).toString());
-				System.out.println();
-			} else if (vehicle instanceof Hovercarft) {
-				((Hovercarft) vehicle).drive();
-				((Hovercarft) vehicle).launch();
-				((Hovercarft) vehicle).enterLand();
-				((Hovercarft) vehicle).enterWater();
-				System.out.println(((Hovercarft) vehicle).toString());
-				System.out.println();
-			} else {
-				((Frigate) vehicle).launch();
-				((Frigate) vehicle).fireGun();
-				System.out.println(vehicle.toString());
-				System.out.println();
-			}
-		}
-
-	}
-
+interface MyConstants {
+    // Constant fields (public, static, final)
+    int MAX_VALUE = 100;
+    String APPLICATION_NAME = "MyApp";
 }
