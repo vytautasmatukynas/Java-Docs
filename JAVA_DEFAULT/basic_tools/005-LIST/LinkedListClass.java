@@ -3,6 +3,8 @@ import java.util.LinkedList;
 public class LinkedListClass {
 
 	public static void main(String[] args) {
+		// linear data structure where each element in the list is stored as a node 
+		// with two pointers, one pointing to the previous node and another pointing to the next node
 		LinkedList<Integer> linkedList = new LinkedList<>();
 
 		addElements(linkedList);
@@ -47,6 +49,7 @@ public class LinkedListClass {
 
 		// Clear all elements from the linked list
 		clearList(linkedList);
+		
 		displayList(linkedList);
 
 	}

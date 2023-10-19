@@ -26,36 +26,48 @@ public class CollectionsClass {
 		map.put("David", 35);
 		map.put("Eve", 22);
 
+		// Sort Collection elements
 		sort(list);
 
+		// Shuffle Collection elements
 		shuffle(list);
 
+		// Reverse Collection elements order, last index becomes first index
 		reverse(list);
 
-		findMinMaxValues(list);
+		// Get MIN and MAX values of Collection
+		getMinMaxValue(list);
 
-//		copy(list);
+		// Make COPY of Collection
+		copy();
 
-		getHowManyelEmentsThereIs(list);
+		// Counts how many times element repeats in Collection
+		getFrequencyOfElementInCollection(list);
 
+		// Checks if Collections have any same elements
 		checkForSameElements(list, set);
 
+		// Get index of element
 		findElementIndex(list);
 		
+		// Adds all elements to collection
 		addAll(names);
 
+		// Replaces all elements that was found same name to new element
 		replaceAll(names);
 
+		// Searches for first Element that has duplicates
 		findOccurrence(names);
 
+		// Fills Collection with data
 		fillCollection(numbers);
 
+		// Rotates collection elements by some step
 		rotateCollection(names);
-
-		enumerationForCollection(numbers);
 		
 		rotateListElements(list);
 
+		// Some other methods
 		unmodifiableMap();
 
 		unmodifiableCollection(list, set);
@@ -71,11 +83,7 @@ public class CollectionsClass {
 	private static void threadSafeMap() {
 		// Creating a synchronized view of a Map
 		Map<String, Integer> synchronizedMap = Collections.synchronizedMap(new HashMap<>());
-	}
-
-	private static void enumerationForCollection(List<Integer> numbers) {
-		// Creating an Enumeration from an Iterator
-		Enumeration<Integer> enumeration = Collections.enumeration(numbers);
+		System.out.println(synchronizedMap);
 	}
 
 	private static void rotateCollection(List<String> names) {
@@ -99,6 +107,7 @@ public class CollectionsClass {
 	private static void unmodifiableMap() {
 		// Getting an unmodifiable view of a Map
 		Map<String, Integer> unmodifiableMap = Collections.unmodifiableMap(new HashMap<>());
+		System.out.println(unmodifiableMap);
 	}
 
 	private static void addAll(List<String> names) {
@@ -116,6 +125,7 @@ public class CollectionsClass {
 	private static void threadSafeCollection() {
 		// Creating an empty synchronized collection
 		Collection<Integer> synchronizedCollection = Collections.synchronizedCollection(new ArrayList<>());
+		System.out.println(synchronizedCollection);
 	}
 
 	private static void rotateListElements(List<String> list) {
@@ -137,31 +147,44 @@ public class CollectionsClass {
 		System.out.println("Disjoint: " + disjoint);
 	}
 
-	private static void getHowManyelEmentsThereIs(List<String> list) {
+	private static void getFrequencyOfElementInCollection(List<String> list) {
 		// Frequency of an element in a Collection
 		int frequency = Collections.frequency(list, "Alice");
 		System.out.println("Frequency of 'Alice': " + frequency);
 	}
 
-	private static void copy(List<String> list) {
-		// Copying elements from one Collection to another
-		List<String> copyList = new ArrayList<>();
-		Collections.copy(copyList, list);
-		System.out.println("Copied list: " + copyList);
+	private static void copy() {
+        List<String> list = new ArrayList<>();
+        
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Cherry");
+        
+        // Create a destination list with the same size as the source list
+        List<String> copyList = new ArrayList<>(Collections.nCopies(list.size(), null));
+        
+        // Copy elements from the source list to the destination list
+        Collections.copy(copyList, list);
+        
+        System.out.println("Copied list: " + copyList);
 	}
 
 	private static void threadSafeCollection(List<String> list) {
 		// Synchronizing a Collection to make it thread-safe
 		Collection<String> synchronizedList = Collections.synchronizedCollection(list);
+		System.out.println(synchronizedList);
 	}
 
 	private static void unmodifiableCollection(List<String> list, Set<Integer> set) {
 		// Creating an unmodifiable Collection (Immutable)
 		List<String> unmodifiableList = Collections.unmodifiableList(list);
+		System.out.println(unmodifiableList);
+		
 		Set<Integer> unmodifiableSet = Collections.unmodifiableSet(set);
+		System.out.println(unmodifiableSet);
 	}
 
-	private static void findMinMaxValues(List<String> list) {
+	private static void getMinMaxValue(List<String> list) {
 		// Finding the minimum and maximum elements in a Collection
 		String min = Collections.min(list);
 		String max = Collections.max(list);

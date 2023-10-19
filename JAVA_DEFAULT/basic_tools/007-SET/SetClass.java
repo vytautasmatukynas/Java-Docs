@@ -94,6 +94,7 @@ public class SetClass {
 	// Method to remove an element from a Set
 	public static void removeElementFromSet(Set<String> set, String element) {
 		set.remove(element);
+		
 		System.out.println("Element '" + element + "' removed from the set.");
 	}
 
@@ -101,6 +102,7 @@ public class SetClass {
 	public static void searchElementInSet(Set<String> set, String element) {
 		if (set.contains(element)) {
 			System.out.println("Element '" + element + "' found in the set.");
+			
 		} else {
 			System.out.println("Element '" + element + "' not found in the set.");
 		}
@@ -110,6 +112,7 @@ public class SetClass {
 	public static void checkIfSetIsEmpty(Set<String> set) {
 		if (set.isEmpty()) {
 			System.out.println("The set is empty.");
+			
 		} else {
 			System.out.println("The set is not empty.");
 		}
@@ -118,12 +121,14 @@ public class SetClass {
 	// Method to clear a Set (remove all elements)
 	public static void clearSet(Set<String> set) {
 		set.clear();
+		
 		System.out.println("Set cleared.");
 	}
 
 	// Method to demonstrate using forEach on a Set
 	public static void forEachExample(Set<String> set) {
 		System.out.println("Using forEach on the Set:");
+		
 		set.forEach(element -> System.out.println("Element: " + element));
 	}
 

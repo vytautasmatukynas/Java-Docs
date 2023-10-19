@@ -1,160 +1,130 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class ArrayListClass {
 
 	public static void main(String[] args) {
+		// dynamic array-like structure that can dynamically resize itself as needed
 
 		// Demonstrates converting an array to an ArrayList and printing it
 		convertArrayToList();
-
-		System.out.println("------");
+		
+		// Print Collection of any type
+		ArrayList<String> sarasas = new ArrayList<>(Arrays.asList("vienas", "du", "trys", "trys", "trys"));
+		print(sarasas);
 
 		// Demonstrates creating ArrayLists in different ways and printing them
 		createList();
 
-		System.out.println("------");
-
-		// Demonstrates using a custom ListObjectClass instance to add and print
-		// elements
-		ArrayListObjectClass arrayList = new ArrayListObjectClass();
-
-		addWithMethod(arrayList, "aaaaa");
-		arrayList.print();
-
-		addWithMethod(arrayList, 0, "zzzzz");
-		arrayList.print();
-
-		System.out.println("------");
-
-		// MOST COMMON ArrayList operations
-
 		// Demonstrates getting the length of an ArrayList
 		listLength();
-
-		System.out.println("------");
 
 		// Demonstrates adding elements to an ArrayList
 		add();
 
-		System.out.println("------");
-
 		// Demonstrates adding all elements from one ArrayList to another
 		addAll();
-
-		System.out.println("------");
 
 		// Demonstrates removing elements from an ArrayList
 		remove();
 
-		System.out.println("------");
-
 		// Demonstrates updating an element at a specific index in an ArrayList
 		set();
-
-		System.out.println("-");
 
 		// Demonstrates removing all occurrences of elements from one ArrayList in
 		// another
 		removeAll();
 
-		System.out.println("------");
-
 		// Demonstrates getting an item by its index in an ArrayList
 		getItemByIndex();
-
-		System.out.println("------");
 
 		// Demonstrates finding the index of the last and first occurrence of an element
 		// in an ArrayList
 		indexOf_lastIndexOf();
 
-		System.out.println("------");
-
 		// Demonstrates checking if an element or a collection of elements is present in
 		// an ArrayList
 		contains();
 
-		System.out.println("------");
-
 		// Demonstrates comparing two ArrayLists for equality
 		equals();
-
-		System.out.println("------");
 
 		// Demonstrates clearing and checking if an ArrayList is empty
 		clear_isEmpty();
 
-		System.out.println("------");
-
 		// Demonstrates removing an element from an ArrayList if it exists
 		containRemove();
-
-		System.out.println("------");
-
-		// SOME OTHER METHODS
-
+		
 		// Demonstrates converting an ArrayList to an array and printing it
 		toArray();
 
-		System.out.println("------");
-
 		// Demonstrates using ArrayLists within a list and printing them
 		listsInList();
-
-		System.out.println("------");
 
 		// Demonstrates creating an ArrayList with elements of different types and
 		// printing it
 		differentTypesArrayList();
 
-		System.out.println("------");
-
 		// Demonstrates iterating through an ArrayList using a lambda expression
 		forEachWithLambda();
-
-		System.out.println("-");
 
 		// Demonstrates iterating through an ArrayList using a lambda expression
 		// (alternative syntax)
 		forEachWithLambda2();
 
-		System.out.println("-");
-
 		// Demonstrates iterating through an ArrayList using a method reference
 		forEachWithClass();
 
 	}
+	
+	private static void print(Collection<?> collection) {    
+	   collection.forEach(item -> System.out.println(item));
+	}
 
 	private static void toArray() {
 		ArrayList<String> sarasas = new ArrayList<>(Arrays.asList("vienas", "du", "trys", "trys", "trys"));
+		
 		System.out.println(sarasas);
+		
 		String[] array = sarasas.toArray(new String[0]);
+		
 		for (String item : array)
 			System.out.print(item + " ");
 	}
 
 	private static void addAll() {
 		ArrayList<String> sarasas = new ArrayList<>(Arrays.asList("vienas", "du", "trys", "trys", "trys"));
+		
 		System.out.println(sarasas);
+		
 		ArrayList<String> sarasas2 = new ArrayList<>(Arrays.asList("trys", "trys", "trys"));
+		
 		sarasas.addAll(sarasas2);
+		
 		System.out.println(sarasas);
 	}
 
 	private static void set() {
 		ArrayList<String> sarasas = new ArrayList<>(Arrays.asList("vienas", "du", "trys", "trys", "trys"));
+		
 		System.out.println(sarasas);
+		
 		sarasas.set(0, "newItem");
+		
 		System.out.println(sarasas);
 	}
 
 	private static void removeAll() {
 		ArrayList<String> sarasas = new ArrayList<>(Arrays.asList("vienas", "du", "trys", "trys", "trys"));
+		
 		System.out.println(sarasas);
+		
 		ArrayList<String> sarasas2 = new ArrayList<>(Arrays.asList("trys", "trys", "trys"));
+		
 		sarasas.removeAll(sarasas2);
+		
 		System.out.println(sarasas);
 	}
 
@@ -166,15 +136,14 @@ public class ArrayListClass {
 
 	public static void printUpperCase(String element) {
 		String upperCaseElement = element.toUpperCase();
+		
 		System.out.println(upperCaseElement);
 	}
 
 	private static void forEachWithLambda2() {
 		ArrayList<String> sarasas = new ArrayList<>(Arrays.asList("vienas", "du", "trys", "trys", "trys"));
 
-		sarasas.forEach((element) -> {
-			System.out.println(element);
-		});
+		sarasas.forEach((element) -> System.out.println(element));
 	}
 
 	private static void listsInList() {
@@ -242,18 +211,6 @@ public class ArrayListClass {
 		System.out.println(sarasas.isEmpty());
 	}
 
-	private static void addWithMethod(ArrayListObjectClass list, String name) {
-		list.add(name);
-
-		System.out.println(list);
-	}
-
-	private static void addWithMethod(ArrayListObjectClass list, int index, String name) {
-		list.add(index, name);
-
-		System.out.println(list);
-	}
-
 	private static void add() {
 		ArrayList<String> arrayList = new ArrayList<String>();
 
@@ -279,17 +236,21 @@ public class ArrayListClass {
 
 	private static void getItemByIndex() {
 		ArrayList<String> sarasas = new ArrayList<>(Arrays.asList("vienas", "du", "trys", "trys", "trys"));
+		
 		System.out.println(sarasas.get(0));
 	}
 
 	private static void remove() {
 		ArrayList<String> sarasas = new ArrayList<>(Arrays.asList("vienas", "du", "trys", "trys", "trys"));
+		
 		System.out.println(sarasas);
 
 		sarasas.remove("du");
+		
 		System.out.println(sarasas);
 
 		sarasas.remove(0);
+		
 		System.out.println(sarasas);
 	}
 

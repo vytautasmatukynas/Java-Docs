@@ -14,6 +14,9 @@ public class MapClass {
 
 		// Add entries to the HashMap
 		addEntriesToMap(hashMap);
+		
+		// Print any type MAP
+		print(hashMap);
 
 		// Display the HashMap
 		displayMap(hashMap);
@@ -103,7 +106,13 @@ public class MapClass {
         convertToListValues();
         
 		convertToList();
+		
+		
 	}
+	
+    private static void print(Map<?, ?> map) {
+        map.forEach((key, value) -> System.out.println(key + " -> " + value));
+    }
 
 	private static void convertToListValues() {
 		Map<String, Integer> ageMap = new HashMap<>();
@@ -147,6 +156,7 @@ public class MapClass {
 	// Method to remove an entry from a Map
 	public static void removeEntryFromMap(Map<String, Integer> map, String key) {
 		map.remove(key);
+		
 		System.out.println("Entry with key '" + key + "' removed from the map.");
 	}
 
@@ -154,6 +164,7 @@ public class MapClass {
 	public static void searchForKeyInMap(Map<String, Integer> map, String key) {
 		if (map.containsKey(key)) {
 			System.out.println("Key '" + key + "' found in the map.");
+			
 		} else {
 			System.out.println("Key '" + key + "' not found in the map.");
 		}
@@ -163,6 +174,7 @@ public class MapClass {
 	public static void checkIfMapIsEmpty(Map<String, Integer> map) {
 		if (map.isEmpty()) {
 			System.out.println("The map is empty.");
+			
 		} else {
 			System.out.println("The map is not empty.");
 		}
@@ -171,12 +183,14 @@ public class MapClass {
 	// Method to clear a Map (remove all entries)
 	public static void clearMap(Map<String, Integer> map) {
 		map.clear();
+		
 		System.out.println("Map cleared.");
 	}
 
 	// Method to demonstrate using forEach on a Map
 	public static void forEachExample(Map<String, Integer> map) {
 		System.out.println("Using forEach on the Map:");
+		
 		map.forEach((key, value) -> System.out.println(key + ": " + value));
 	}
 
@@ -193,6 +207,7 @@ public class MapClass {
 	// Method to get keys and values from a Map
 	public static void getKeysAndValues(Map<String, Integer> map) {
 		System.out.println("Keys and Values:");
+		
 		for (Entry<String, Integer> entry : map.entrySet()) {
 			System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
 		}
@@ -201,12 +216,14 @@ public class MapClass {
 	// Method to add all entries from one map to another
 	public static void addAllEntriesFromMap(Map<String, Integer> destinationMap, Map<String, Integer> sourceMap) {
 		destinationMap.putAll(sourceMap);
+		
 		System.out.println("Added all entries from source map to destination map.");
 	}
 
 	// Method to remove all entries in one map that are also in another map
 	public static void removeAllEntriesInCommon(Map<String, Integer> map1, Map<String, Integer> map2) {
 		map1.entrySet().removeIf(entry -> map2.containsKey(entry.getKey()));
+		
 		System.out.println("Removed all entries in common between the two maps.");
 	}
 }

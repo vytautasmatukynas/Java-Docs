@@ -67,7 +67,7 @@ public class ListClass {
 
 	}
 
-	// Method to add elements to a List
+
 	public static void addElementsToList(List<String> list) {
 		list.add("Apple");
 		list.add("Banana");
@@ -75,18 +75,18 @@ public class ListClass {
 		list.add("Date");
 	}
 
-	// Method to display the elements in a List
+
 	public static void displayList(List<String> list) {
 		System.out.println("List: " + list);
 	}
 
-	// Method to remove an element from a List
+
 	public static void removeElementFromList(List<String> list, String element) {
 		list.remove(element);
 		System.out.println("Element '" + element + "' removed from the list.");
 	}
 
-	// Method to search for an element in a List
+
 	public static void searchElementInList(List<String> list, String element) {
 		if (list.contains(element)) {
 			System.out.println("Element '" + element + "' found in the list.");
@@ -95,7 +95,7 @@ public class ListClass {
 		}
 	}
 
-	// Method to check if a List is empty
+
 	public static void checkIfListIsEmpty(List<String> list) {
 		if (list.isEmpty()) {
 			System.out.println("The list is empty.");
@@ -104,13 +104,13 @@ public class ListClass {
 		}
 	}
 
-	// Method to clear a List (remove all elements)
+
 	public static void clearList(List<String> list) {
 		list.clear();
 		System.out.println("List cleared.");
 	}
 
-	// Method to demonstrate forEach loop on a List
+
 	public static void forEachExample(List<String> list) {
 		System.out.println("Using forEach loop:");
 		list.forEach(item -> System.out.println(item));
