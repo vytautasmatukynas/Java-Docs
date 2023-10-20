@@ -56,7 +56,7 @@ public class GenericsBasic {
 	}
 	
 	/*
-	 * GENERIC Method and returning GENERIC Type
+	 * GENERIC Method returning GENERIC Type
 	 */
 	static <R> List<R> createList () {
 		List<R> list = new ArrayList<>();
