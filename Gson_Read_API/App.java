@@ -17,7 +17,7 @@ public class App {
 		String stationName = "kauno";
 		String addrStations = String.format("https://api.meteo.lt/v1/stations/%s-ams/observations/latest", stationName);
 		
-		Optional<WeatherData> places = ReqRespAPI.fetchDataAsObject(addrStations, WeatherData.class);
+		Optional<WeatherData> places = RequestHTTP.fetchDataAsObject(addrStations, WeatherData.class);
 		
 		if(places.isPresent()) {
 			String name = places.get()
@@ -38,7 +38,7 @@ public class App {
 	private static void jsonAsList() {
 		String addrUrl = "https://api.meteo.lt/v1/places";
 		
-		List<Place> places = ReqRespAPI.fetchDataAsList(addrUrl, Place.class);
+		List<Place> places = RequestHTTP.fetchDataAsList(addrUrl, Place.class);
 		
 		if (!places.isEmpty())
 			places.forEach(data -> System.out.println(String.format("Pavadinimas: %s | "

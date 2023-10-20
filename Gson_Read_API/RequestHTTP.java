@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 
-public class ReqRespAPI {
+public class RequestHTTP {
 	
 	public static String getStringFromUrl(String url) {
 		try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
