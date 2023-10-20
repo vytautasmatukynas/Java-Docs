@@ -13,15 +13,13 @@ public class LogicalOperatorsBasic {
 	}
 
 	private static void not() {
-		// ! yra NOT. Galima naudoti tik su BOOLEAN
 		boolean logicalNotResult = !true;
 		System.out.println("Logical NOT: " + logicalNotResult);
 	}
 
 	private static void and(int skaicius_1, int skaicius_2) {
-		// && yra AND. & irgi yra AND
-		// && nustoja tikrinti suradus false
-		// & tikrina viska iki galo, kad ir rado false
+		// && stop when false
+		// & checks everything
 		if (skaicius_1 == 5 && skaicius_2 == 5) {
 			System.out.println("Abidvi reiksmes patikrino ir visos tinka");
 		} else if (skaicius_1 == 5 & skaicius_2 == 5) {
@@ -32,9 +30,8 @@ public class LogicalOperatorsBasic {
 	}
 
 	private static void or(int skaicius_1, int skaicius_2) {
-		// || yra OR. | irgi yra OR
-		// || nustoja tikrinti suradus true
-		// | tikrina viska iki galo, kad ir rado true
+		// || stops when true
+		// | checks everything
 		if (skaicius_1 == 5 || skaicius_2 == 5) {
 			System.out.println("Rado bent viena reiksme ir sustojo ties ja ieskoti");
 		} else if (skaicius_1 == 5 | skaicius_2 == 5) {
