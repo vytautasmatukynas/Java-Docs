@@ -18,8 +18,6 @@ import java.util.List;
  * N: Sometimes used to represent a number, especially when working with numeric
  * data types. For example, in a generic class like NumberWrapper<N extends
  * Number>, N would represent a numeric type.
- * 
- * R: Used to represent a return type in methods.
  */
 
 public class GenericsBasic {
@@ -58,8 +56,8 @@ public class GenericsBasic {
 	/*
 	 * GENERIC Method returning GENERIC Type
 	 */
-	static <R> List<R> createList () {
-		List<R> list = new ArrayList<>();
+	static <T> List<T> createList () {
+		List<T> list = new ArrayList<>();
 		return list;
 	}
 
