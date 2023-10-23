@@ -55,6 +55,11 @@ public class App {
 
 	
 	private static void readWriteUpdateJsonList(String fileName, Faker fakeData, Gson gson) {
+		String name = fakeData.name().firstName();
+		long age = fakeData.number().numberBetween(19, 35);
+		String university = fakeData.educator().university();
+		
+		
 		List<Student> studentai = FileHandler.readJsonAsList(fileName, Student.class);
 		
 		studentai.stream()
@@ -62,17 +67,9 @@ public class App {
 						("Vardas: %s | Amzius: %s | Universitetas: %s", 
 								student.getName(), student.getAge(), student.getStudying())));
 		
-		studentai.add(new Student(fakeData.name().firstName(), 
-								fakeData.number().numberBetween(19, 35), 
-								fakeData.educator().university()));
-
-		studentai.add(new Student(fakeData.name().firstName(), 
-								fakeData.number().numberBetween(19, 35), 
-								fakeData.educator().university()));
-		
-		studentai.add(new Student(fakeData.name().firstName(), 
-								fakeData.number().numberBetween(19, 35), 
-								fakeData.educator().university()));
+		studentai.add(new Student(name, age, university));
+		studentai.add(new Student(name, age, university));
+		studentai.add(new Student(name, age, university));
 
 		String json = gson.toJson(studentai);
 		
@@ -94,16 +91,18 @@ public class App {
 	
 	
 	private static void readWriteUpdateJsonMap(String fileName, Faker fakeData, Gson gson) {
+		int id = new Random().nextInt(1, 100000);
+		String name = fakeData.name().firstName();
+		long age = fakeData.number().numberBetween(19, 35);
+		String university = fakeData.educator().university();
+		
 		Map<Integer, Student> studentai = FileHandler.readJsonAsMap(fileName, Integer.class, Student.class);
 
 		studentai.forEach((key, value) -> System.out.println(
 				String.format("Studento ID: %s\n\tVardas: %s\n\tAmzius: %s\n\tUniversitetas: %s\n\t", 
 						key, value.getName(), value.getAge(), value.getAge())));
 		
-		studentai.put(new Random().nextInt(1, 100000), 
-				new Student(fakeData.name().firstName(), 
-						fakeData.number().numberBetween(19, 35), 
-						fakeData.educator().university()));
+		studentai.put(id, new Student(name, age, university));
 
 		String json = gson.toJson(studentai);
 		System.out.println(json);
@@ -131,13 +130,14 @@ public class App {
 
 	
 	private static void jsonUsingArray(Faker fakeData, Gson gson) {
-		ArrayList<Student> studentas = new ArrayList<>(List.of(new Student(fakeData.name().firstName(), 
-														fakeData.number().numberBetween(19, 35), 
-														fakeData.educator().university())) );
+		int id = new Random().nextInt(1, 100000);
+		String name = fakeData.name().firstName();
+		long age = fakeData.number().numberBetween(19, 35);
+		String university = fakeData.educator().university();
 		
-		ArrayList<StudentsList> studentai = new ArrayList<>(List.of(new StudentsList(
-																	new Random().nextInt(1, 100000), 
-																	studentas)));
+		ArrayList<Student> studentas = new ArrayList<>(List.of(new Student(name, age, university)));
+		
+		ArrayList<StudentsList> studentai = new ArrayList<>(List.of(new StudentsList(id, studentas)));
 
 		String json = gson.toJson(studentai);
 		System.out.println(json);
@@ -160,11 +160,14 @@ public class App {
 	
 	
 	private static void jsonUsingObjectWithArray(Faker fakeData, Gson gson) {
-		ArrayList<Student> studentas = new ArrayList<>(List.of(new Student(fakeData.name().firstName(), 
-														fakeData.number().numberBetween(19, 35), 
-														fakeData.educator().university())) );
+		int id = new Random().nextInt(1, 100000);
+		String name = fakeData.name().firstName();
+		long age = fakeData.number().numberBetween(19, 35);
+		String university = fakeData.educator().university();
 		
-		StudentsList studentai = new StudentsList(new Random().nextInt(1, 100000), studentas);
+		ArrayList<Student> studentas = new ArrayList<>(List.of(new Student(name, age, university)));
+		
+		StudentsList studentai = new StudentsList(id, studentas);
 
 		String json = gson.toJson(studentai);
 		System.out.println(json);
@@ -187,11 +190,14 @@ public class App {
 	
 	
 	private static void jsonUsingObject(Faker fakeData, Gson gson) {
-		Student studentas = new Student(fakeData.name().firstName(), 
-									fakeData.number().numberBetween(19, 35), 
-									fakeData.educator().university());
+		int id = new Random().nextInt(1, 100000);
+		String name = fakeData.name().firstName();
+		long age = fakeData.number().numberBetween(19, 35);
+		String university = fakeData.educator().university();
 		
-		Students studentai = new Students(new Random().nextInt(1, 100000), studentas);
+		Student studentas = new Student(name, age, university);
+		
+		Students studentai = new Students(id, studentas);
 
 		String json = gson.toJson(studentai);
 		System.out.println(json);
@@ -220,9 +226,13 @@ public class App {
 
 	
 	private static void arrayToJson(Faker fakeData, Gson gson) {
-		Student studentas1 = new Student(fakeData.name().firstName(), fakeData.number().numberBetween(19, 35), fakeData.educator().university());
-		Student studentas2 = new Student(fakeData.name().firstName(), fakeData.number().numberBetween(19, 35), fakeData.educator().university());
-		Student studentas3 = new Student(fakeData.name().firstName(), fakeData.number().numberBetween(19, 35), fakeData.educator().university());
+		String name = fakeData.name().firstName();
+		long age = fakeData.number().numberBetween(19, 35);
+		String university = fakeData.educator().university();
+		
+		Student studentas1 = new Student(name, age, university);
+		Student studentas2 = new Student(name, age, university);
+		Student studentas3 = new Student(name, age, university);
 		
 		Student[] studentai = {studentas1, studentas2, studentas3};
 
@@ -236,11 +246,16 @@ public class App {
 
 	
 	private static void mapToJson(Faker fakeData, Gson gson) {
+		int id = new Random().nextInt(1, 100000);
+		String name = fakeData.name().firstName();
+		long age = fakeData.number().numberBetween(19, 35);
+		String university = fakeData.educator().university();
+		
 		Map<Integer, Student> studentai = new HashMap<>();
 		
-		studentai.put(new Random().nextInt(1, 100000), new Student(fakeData.name().firstName(), fakeData.number().numberBetween(19, 35), fakeData.educator().university()));
-		studentai.put(new Random().nextInt(1, 100000), new Student(fakeData.name().firstName(), fakeData.number().numberBetween(19, 35), fakeData.educator().university()));
-		studentai.put(new Random().nextInt(1, 100000), new Student(fakeData.name().firstName(), fakeData.number().numberBetween(19, 35), fakeData.educator().university()));
+		studentai.put(id, new Student(name, age, university));
+		studentai.put(id, new Student(name, age, university));
+		studentai.put(id, new Student(name, age, university));
 
 		String json = gson.toJson(studentai);
 		System.out.println(json);
@@ -250,11 +265,15 @@ public class App {
 	
 
 	private static void setToJson(Faker fakeData, Gson gson) {
+		String name = fakeData.name().firstName();
+		long age = fakeData.number().numberBetween(19, 35);
+		String university = fakeData.educator().university();
+		
 		Set<Student> studentai = new HashSet<>();
 		
-		studentai.add(new Student(fakeData.name().firstName(), fakeData.number().numberBetween(19, 35), fakeData.educator().university()));
-		studentai.add(new Student(fakeData.name().firstName(), fakeData.number().numberBetween(19, 35), fakeData.educator().university()));
-		studentai.add(new Student(fakeData.name().firstName(), fakeData.number().numberBetween(19, 35), fakeData.educator().university()));
+		studentai.add(new Student(name, age, university));
+		studentai.add(new Student(name, age, university));
+		studentai.add(new Student(name, age, university));
 
 		String json = gson.toJson(studentai);
 		System.out.println(json);
@@ -264,11 +283,15 @@ public class App {
 	
 
 	private static void listToJson(Faker fakeData, Gson gson) {
+		String name = fakeData.name().firstName();
+		long age = fakeData.number().numberBetween(19, 35);
+		String university = fakeData.educator().university();
+		
 		List<Student> studentai = new ArrayList<>();
 		
-		studentai.add(new Student(fakeData.name().firstName(), fakeData.number().numberBetween(19, 35), (String)fakeData.educator().university()));
-		studentai.add(new Student(fakeData.name().firstName(), fakeData.number().numberBetween(19, 35), (String)fakeData.educator().university()));
-		studentai.add(new Student(fakeData.name().firstName(), fakeData.number().numberBetween(19, 35), (String)fakeData.educator().university()));
+		studentai.add(new Student(name, age, university));
+		studentai.add(new Student(name, age, university));
+		studentai.add(new Student(name, age, university));
 
 		String json = gson.toJson(studentai);
 		System.out.println(json);
