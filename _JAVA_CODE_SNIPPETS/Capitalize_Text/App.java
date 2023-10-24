@@ -2,6 +2,10 @@ import java.util.Arrays;
 import java.util.Optional;
 
 
+/**
+ * Capitalize one word or sentence
+ */
+
 public class App {
 	
 	public static void main(String[] args) {
