@@ -121,12 +121,12 @@ public class App {
 
 		try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password)){
 		    String query = String.format("SELECT %s, %s " 
-										+ "FROM sakila.film " 
-										+ "WHERE length < (SELECT AVG(%s) FROM sakila.film) "
-										+ "GROUP BY %s, %s " 
-										+ "ORDER BY %s ASC " 
-										+ "LIMIT 1;",
-										TITLE, LENGTH, LENGTH, TITLE, LENGTH, LENGTH);
+						+ "FROM sakila.film " 
+						+ "WHERE length < (SELECT AVG(%s) FROM sakila.film) "
+						+ "GROUP BY %s, %s " 
+						+ "ORDER BY %s ASC " 
+						+ "LIMIT 1;",
+						TITLE, LENGTH, LENGTH, TITLE, LENGTH, LENGTH);
 		    
             Statement statement = conn.createStatement(); // Create a statement for executing SQL queries.
 
@@ -186,12 +186,12 @@ public class App {
 		try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password)) {
 
 			String query = String.format("SELECT %s, %s " 
-										+ "FROM sakila.film " 
-										+ "WHERE length < (SELECT AVG(%s) FROM sakila.film) "
-										+ "GROUP BY %s, %s " 
-										+ "ORDER BY %s ASC " 
-										+ "LIMIT 1;",
-										TITLE, LENGTH, LENGTH, TITLE, LENGTH, LENGTH);
+							+ "FROM sakila.film " 
+							+ "WHERE length < (SELECT AVG(%s) FROM sakila.film) "
+							+ "GROUP BY %s, %s " 
+							+ "ORDER BY %s ASC " 
+							+ "LIMIT 1;",
+							TITLE, LENGTH, LENGTH, TITLE, LENGTH, LENGTH);
 
 			Statement statement = conn.createStatement();
 
@@ -202,9 +202,9 @@ public class App {
 				int length = result.getInt(LENGTH);
 
 				System.out.format("\nMovie info: <---\n" 
-								+ "title: %s\n" 
-								+ "length: %s min.\n", 
-								title, length);
+						+ "title: %s\n" 
+						+ "length: %s min.\n", 
+						title, length);
 			}
 
 		} catch (SQLException e) {
@@ -216,14 +216,14 @@ public class App {
 		try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password)) {
 
 			String query = String.format("SELECT %s, COUNT(%s) " 
-										+ "FROM sakila.film " 
-										+ "GROUP BY %s " 
-										+ "HAVING COUNT(%s) > 70 "
-										+ "ORDER BY COUNT(%s) ASC " 
-										+ "LIMIT 1;",
-										SPECIAL_FEATURES, SPECIAL_FEATURES, 
-										SPECIAL_FEATURES, SPECIAL_FEATURES, 
-										SPECIAL_FEATURES);
+							+ "FROM sakila.film " 
+							+ "GROUP BY %s " 
+							+ "HAVING COUNT(%s) > 70 "
+							+ "ORDER BY COUNT(%s) ASC " 
+							+ "LIMIT 1;",
+							SPECIAL_FEATURES, SPECIAL_FEATURES, 
+							SPECIAL_FEATURES, SPECIAL_FEATURES, 
+							SPECIAL_FEATURES);
 
 			Statement statement = conn.createStatement();
 
@@ -250,12 +250,12 @@ public class App {
 
 			// SQL query to select customer and movie information
 			String query = String.format("SELECT %s, %s, %s " 
-										+ "FROM sakila.customer "
-										+ "INNER JOIN rental ON customer.customer_id = rental.customer_id "
-										+ "INNER JOIN inventory ON rental.inventory_id = inventory.inventory_id "
-										+ "INNER JOIN film ON inventory.film_id = film.film_id " 
-										+ "LIMIT 1;",
-										CUSTOMER_FIRST_NAME, CUSTOMER_LAST_NAME, FILM_TITLE);
+							+ "FROM sakila.customer "
+							+ "INNER JOIN rental ON customer.customer_id = rental.customer_id "
+							+ "INNER JOIN inventory ON rental.inventory_id = inventory.inventory_id "
+							+ "INNER JOIN film ON inventory.film_id = film.film_id " 
+							+ "LIMIT 1;",
+							CUSTOMER_FIRST_NAME, CUSTOMER_LAST_NAME, FILM_TITLE);
 
 			// Create a statement for executing the SQL query
 			Statement statement = conn.createStatement();
@@ -270,10 +270,10 @@ public class App {
 				String title = result.getString(FILM_TITLE); // Get the movie title
 
 				System.out.format("\nRent info: <---\n" 
-								+ "First name: %s\n" 
-								+ "Last name: %s\n" 
-								+ "Movie title: %s\n",
-								name, lastName, title);
+							+ "First name: %s\n" 
+							+ "Last name: %s\n" 
+							+ "Movie title: %s\n",
+							name, lastName, title);
 			}
 
 		} catch (SQLException e) {
@@ -288,9 +288,9 @@ public class App {
 
 			// SQL query to select movie information
 			String query = String.format("SELECT %s, %s, %s, %s, %s " 
-										+ "FROM film " 
-										+ "LIMIT 1", 
-										TITLE, DESCRIPTION, LENGTH, REALESE_YEAR, RATING);
+							+ "FROM film " 
+							+ "LIMIT 1", 
+							TITLE, DESCRIPTION, LENGTH, REALESE_YEAR, RATING);
 
 			// Create a statement for executing the SQL query
 			Statement statement = conn.createStatement();
@@ -307,12 +307,12 @@ public class App {
 				String rating = result.getString(RATING); // Get the movie rating
 
 				System.out.format("\nMovie info: <---\n" 
-								+ "title: %s\n" 
-								+ "description: %s\n" 
-								+ "length: %s\n"
-								+ "year: %s\n" 
-								+ "rating: %s\n", 
-								title, description, length, releaseYear, rating);
+							+ "title: %s\n" 
+							+ "description: %s\n" 
+							+ "length: %s\n"
+							+ "year: %s\n" 
+							+ "rating: %s\n", 
+							title, description, length, releaseYear, rating);
 			}
 
 		} catch (SQLException e) {
