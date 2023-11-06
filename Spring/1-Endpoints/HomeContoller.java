@@ -28,6 +28,7 @@ public class HomeContoller {
      */
 
     /*
+    Capture path variables in endpoint
     http://127.0.0.1:8080/v1/info/jonas
     Result: hello jonas
      */
@@ -42,7 +43,7 @@ public class HomeContoller {
     }
 
     /*
-    Give parameter to endpoint
+    Query params to endpoint
     http://127.0.0.1:8080/v1/hello/to?name=Jonas
     Result: Hello Jonas
 
