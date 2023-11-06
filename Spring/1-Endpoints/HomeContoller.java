@@ -8,7 +8,7 @@ public class HomeContoller {
 
     /*
     http://127.0.0.1:8080/v1/hello
-    Result: hello jonas
+    Result: hello to you
      */
     @GetMapping("/hello")
     public String getTextHello() {
@@ -17,6 +17,9 @@ public class HomeContoller {
 
     /*
     Older Spring versions used this syntax with "RequestMapping"
+
+    http://127.0.0.1:8080/v1/info/jonas
+    Result: hello jonas
 
     @RequestMapping(value = "/info/{name}", method = RequestMethod.GET)
     public String getInfo(@PathVariable String name) {
@@ -29,7 +32,8 @@ public class HomeContoller {
     Result: hello jonas
      */
     @GetMapping("/info/{name}")  // This annotation handles GET requests to the specified endpoint.
-    public String getInfo(@PathVariable String name) {  // This method takes a 'name' path variable as input.
+    // This method takes a 'name' path variable as input.
+    public String getInfo(@PathVariable String name) {  
         if (name.equals("Jonas")) {
             return "Hello " + name;
         } else {
