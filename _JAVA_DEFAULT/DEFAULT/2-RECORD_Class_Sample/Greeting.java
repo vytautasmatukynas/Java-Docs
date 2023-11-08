@@ -6,8 +6,9 @@ of classes that primarily exist to hold and manage data.
 public record Greeting(long id, String content) { }
 
 /*
-Same normal class
-Get all this with just one line...  OMG!
+// With 'record' you will get all this with just one line:
+
+// Standart DTO class sample.
 
 public class Greeting {
     private long id;
