@@ -1,6 +1,6 @@
 
 /*
-In Java, records were introduced as a feature in Java 16 to simplify the creation
+Records were introduced as a feature in Java 16 to simplify the creation
 of classes that primarily exist to hold and manage data.
  */
 public record Greeting(long id, String content) { }
