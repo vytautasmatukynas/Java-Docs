@@ -10,8 +10,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>sql.connect.info</groupId>
-	<artifactId>sql-conn</artifactId>
+	<groupId>web.libraries.sql</groupId>
+	<artifactId>sql-connect</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
