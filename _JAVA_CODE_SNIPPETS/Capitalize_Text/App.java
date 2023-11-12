@@ -29,7 +29,7 @@ public class App {
 				return formattedText;
 			}
 		} catch (Exception e) {
-			FileHandler.saveToFile(e.getMessage(), "errors/TextEditor_Errors.txt");
+			System.out.println(e.getMessage());
 		}
 		
 		return "";
