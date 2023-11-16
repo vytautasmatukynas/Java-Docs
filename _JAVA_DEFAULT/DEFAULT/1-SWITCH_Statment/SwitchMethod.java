@@ -5,6 +5,7 @@ public class SwitchMethod {
 	public static void main(String[] args) {
 
 		switchSample();
+		switchSampleWithLambda();
 
 	}
 
@@ -51,14 +52,31 @@ public class SwitchMethod {
 				case 7:
 					System.out.println("sekmadienis");
 					continue;
-			default:
-				System.out.println("Irasyk tinkama diena nuo 1 iki 7");
-				continue;
+				default:
+					System.out.println("Irasyk tinkama diena nuo 1 iki 7");
 			}
 
 		}
 
 		scanner.close();
+	}
+
+	private static void switchSampleWithLambda() {
+		Scanner scanner = new Scanner(System.in);
+		int input = scanner.nextInt();
+
+		String dayOfWeek = switch (input) {
+			case 1 -> "pirmadienis";
+			case 2 -> "antradienis";
+			case 3 -> "treciadienis";
+			case 4 -> "ketvirtadienis";
+			case 5 -> "penktadienis";
+			case 6 -> "sestadienis";
+			case 7 -> "sekmadienis";
+			default -> "Įrašykite tinkamą dieną nuo 1 iki 7";
+		};
+
+		System.out.println(dayOfWeek);
 	}
 
 }
