@@ -13,10 +13,15 @@ import lombok.Data;
  *
  * The @Data annotation from Lombok generates getters, setters, toString, equals, hashCode,
  * and a constructor with all non-null fields.
+ *
+ * The @NoArgsConstructor annotation generates empty constructor.
+ * The @AllArgsConstructor annotation generates full constructor.
  */
 @Entity
 @Table(name = "user")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     /*
