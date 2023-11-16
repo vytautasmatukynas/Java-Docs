@@ -14,6 +14,9 @@ import org.springframework.security.web.SecurityFilterChain;
  * Configuration class for security settings, specifically designed for testing and development purposes.
  * Note: This configuration lacks SQL integration, encryption, and other security features and should not
  * be used in a production environment.
+ * <p>
+ * With this code accounts are HARDCODED in your JAVA APP. For testing purposes it's ok, but for production have to
+ * use SQL ir something else to store all passwords and encrypt them.
  */
 
 /*
