@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
+/*
  * Statement - interface accepts strings as SQL queries. 
  * It is VURNERABLE to SQL injection.
  * 
