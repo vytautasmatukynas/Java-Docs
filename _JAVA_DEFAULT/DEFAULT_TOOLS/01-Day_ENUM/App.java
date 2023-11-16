@@ -12,24 +12,16 @@ public class App {
 
 	private static String dienaLietuviskai(DayOfWeek day) {
 
-		switch (day) {
-		case MONDAY:
-			return "pirmadienis";
-		case TUESDAY:
-			return "pirmadienis";
-		case THURSDAY:
-			return "pirmadienis";
-		case WEDNESDAY:
-			return "pirmadienis";
-		case FRIDAY:
-			return "pirmadienis";
-		case SATURDAY:
-			return "pirmadienis";
-		case SUNDAY:
-			return "pirmadienis";
-		default:
-			return "";
-		}
+        return switch (day) {
+            case MONDAY -> "pirmadienis";
+            case TUESDAY -> "pirmadienis";
+            case THURSDAY -> "pirmadienis";
+            case WEDNESDAY -> "pirmadienis";
+            case FRIDAY -> "pirmadienis";
+            case SATURDAY -> "pirmadienis";
+            case SUNDAY -> "pirmadienis";
+			default -> "";
+        };
 
 	}
 

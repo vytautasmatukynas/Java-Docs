@@ -13,32 +13,20 @@ public class App {
 	}
 
 	public static String getMenesis(Month month) {
-		switch (month) {
-		case JANUARY:
-			return "Sausis";
-		case FEBRUARY:
-			return "Vasaris";
-		case MARCH:
-			return "Kovas";
-		case APRIL:
-			return "Balandis";
-		case JUNE:
-			return "Birzelis";
-		case JULY:
-			return "Liepa";
-		case AUGUST:
-			return "Rugpjutis";
-		case SEPTEMBER:
-			return "Rugsejis";
-		case OCTOBER:
-			return "Spalis";
-		case NOVEMBER:
-			return "Lapkritis";
-		case DECEMBER:
-			return "Gruodis";
-		default:
-			return "";
-		}
+        return switch (month) {
+            case JANUARY -> "Sausis";
+            case FEBRUARY -> "Vasaris";
+            case MARCH -> "Kovas";
+            case APRIL -> "Balandis";
+            case JUNE -> "Birzelis";
+            case JULY -> "Liepa";
+            case AUGUST -> "Rugpjutis";
+            case SEPTEMBER -> "Rugsejis";
+            case OCTOBER -> "Spalis";
+            case NOVEMBER -> "Lapkritis";
+            case DECEMBER -> "Gruodis";
+            default -> "";
+        };
 
 	}
 
