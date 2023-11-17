@@ -70,6 +70,10 @@ import lombok.NoArgsConstructor;
     @Cleanup:
         Description: Automatically generates try-finally blocks, ensuring that resources (e.g., streams)
         * are properly closed.
+
+    @RequiredArgsConstructor:
+        Description: Automatically generates a constructor for a class based on the non-null final fields or, in 
+        other words, fields marked with "final" and @NonNull annotations.
  */
 @Entity
 @Table(name = "user")
