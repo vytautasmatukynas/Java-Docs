@@ -13,6 +13,7 @@ import java.util.List;
 
 /*
 @Controller for Web Pages and Views
+
 @RequiredArgsConstructor is a Lombok annotation in Java that automatically generates
 a constructor for a class based on the non-null final fields or, in other words, fields
 marked with "final" and @NonNull annotations.
