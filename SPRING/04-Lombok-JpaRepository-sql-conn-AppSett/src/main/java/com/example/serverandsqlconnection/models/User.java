@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
     database. You can customize this mapping using the name, schema, and catalog attributes of the @Table annotation.
     "@Table(name="user", schema="testdb")"
 
+    LOMBOK Annotations <----
     @Getter and @Setter:
         Description: Automatically generates getter and setter methods for class properties. For example, placing @Getter on a private property will create a public getter for that property.
 
