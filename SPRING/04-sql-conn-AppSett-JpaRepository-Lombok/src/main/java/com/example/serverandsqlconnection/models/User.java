@@ -3,6 +3,7 @@ package com.example.serverandsqlconnection.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -30,6 +31,29 @@ import lombok.NoArgsConstructor;
         Description: Creates a convenient and safe way to build objects using the Builder design pattern.
         * Allows creating objects by setting only the desired properties instead of all at once.
 
+        // ############ SAMPLE #############
+        // This code sets the values for the name and email fields of the User object using the builder pattern.
+        User user = User.builder()
+                .name("John Doe")
+                .email("john.doe@example.com")
+                .build();
+
+        // Assume you have an existing User object that you want to update
+        User existingUser = // ... retrieve the existing user from the database or elsewhere
+
+        // Use the builder pattern to create a new User object with updated values
+        User updatedUser = User.builder()
+                .name("Updated Name")
+                .email("updated.email@example.com")
+                .build();
+
+        // Replace the existing User object with the updated one
+        existingUser.setName(updatedUser.getName());
+        existingUser.setEmail(updatedUser.getEmail());
+
+        // Now the existingUser object has been updated with the new values
+        // ###################################
+
     @Slf4j:
         Description: Automatically generates a Logger object using the SLF4J (Simple Logging Facade for Java)
         * library, simplifying logging in classes.
@@ -49,6 +73,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "user")
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -57,6 +82,22 @@ public class User {
      * The @Id annotation marks the 'id' field as the primary key of the entity.
      * The @GeneratedValue annotation specifies the strategy for generating primary key values,
      * and GenerationType.IDENTITY indicates automatic generation by the database.
+     *
+     * GenerationType.IDENTITY - database automatically assigns an incrementing number for each new entity.
+     * It is typically used with databases that support auto-increment columns, such as MySQL, PostgreSQL,
+     * and SQL Server.
+     *
+     * GenerationType.AUTO - JPA provider selects the appropriate strategy based on the database capabilities.
+     * It may use identity columns, sequences, or other mechanisms depending on the underlying database.
+     *
+     * GenerationType.SEQUENCE -a  database sequence is used to generate unique values. This is suitable for
+     * databases like Oracle that support sequences.
+     *
+     * GenerationType.TABLE - a separate table is used to store and generate unique key values. This is a more
+     * portable solution but may be less efficient than other strategies.
+     *
+     *GenerationType.NONE - no automatic generation of values. The application is responsible for setting the
+     * primary key before persisting the entity.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

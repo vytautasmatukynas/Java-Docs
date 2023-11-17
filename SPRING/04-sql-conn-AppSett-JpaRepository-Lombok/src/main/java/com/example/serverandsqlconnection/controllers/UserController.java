@@ -3,9 +3,9 @@ package com.example.serverandsqlconnection.controllers;
 import com.example.serverandsqlconnection.models.User;
 import com.example.serverandsqlconnection.repositories.UserRepository;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -13,15 +13,15 @@ import java.util.List;
 
 /*
 @Controller for Web Pages and Views
+@RequiredArgsConstructor is a Lombok annotation in Java that automatically generates
+a constructor for a class based on the non-null final fields or, in other words, fields
+marked with "final" and @NonNull annotations.
  */
 @RestController
+@RequiredArgsConstructor
 public class UserController {
 
-    UserRepository userRepository;
-
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private final UserRepository userRepository;
 
     @GetMapping("/getall")
     public List<User> getAll() {
