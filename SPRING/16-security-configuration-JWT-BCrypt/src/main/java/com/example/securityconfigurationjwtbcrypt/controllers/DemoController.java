@@ -39,6 +39,12 @@ public class DemoController {
         }
     }
 
+    /**
+     * Handles GET requests to "/api/demo" endpoint.
+     *
+     * @return ResponseEntity with a greeting message if the user has "ADMIN" role.
+     * @throws ResponseStatusException with HttpStatus.FORBIDDEN if the user does not have sufficient privileges.
+     */
     @GetMapping
     public ResponseEntity<String> sayBye() {
         // Retrieve the current authentication information
