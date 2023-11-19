@@ -48,6 +48,9 @@ public class SecurityConfig {
 //                        .requestMatchers("/api/**").hasRole("ADMIN")
 //                        // Require USER role for endpoints under /api/demo/
 //                        .requestMatchers("/api/demo/**").hasRole("USER")
+//                        // endpoints under /api/demo/ and can be used with GET and you need TOKEN for
+//                        // other request
+//                        .requestMatchers(HttpMethod.GET, "/api/books/**").permitAll()
 //                        If jwt is used, and end-point isn't defined here, then that endpoint can be
 //                        used just with generated TOKEN.
 
