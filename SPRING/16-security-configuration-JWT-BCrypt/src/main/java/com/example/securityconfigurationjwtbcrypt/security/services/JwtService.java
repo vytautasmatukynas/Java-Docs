@@ -92,15 +92,36 @@ public class JwtService {
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
+    /**
+     * Check if the provided JWT token is expired.
+     *
+     * @param token The JWT token to check for expiration.
+     * @return True if the token is expired, false otherwise.
+     */
     private boolean isTokenExpired(String token) {
+        // Compare the expiration date of the token with the current date
         return extractExpiration(token).before(new Date());
     }
 
+    /**
+     * Extract the expiration date from the JWT token.
+     *
+     * @param token The JWT token from which to extract the expiration date.
+     * @return The expiration date.
+     */
     private Date extractExpiration(String token) {
+        // Extract the expiration claim from the token
         return extractClaim(token, Claims::getExpiration);
     }
 
+    /**
+     * Extract all claims (payload) from the JWT token.
+     *
+     * @param token The JWT token from which to extract claims.
+     * @return All claims (payload) from the token.
+     */
     private Claims extractAllClaims(String token) {
+        // Parse and verify the signed JWT token, then extract and return its payload (claims)
         return Jwts.parser()
                 .verifyWith(setSignInKey())
                 .build()
@@ -108,16 +129,24 @@ public class JwtService {
                 .getPayload();
     }
 
+    /**
+     * Set the signing key used for JWT token verification.
+     *
+     * @return The secret key for JWT token verification.
+     */
     private SecretKey setSignInKey() {
+        // Decode the base64-encoded secret key string into a byte array
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
 
         // Ensure the key has at least 256 bits (32 bytes)
         if (keyBytes.length < 32) {
+            // If the key is less than 256 bits, pad it with zeros
             byte[] paddedKeyBytes = new byte[32];
             System.arraycopy(keyBytes, 0, paddedKeyBytes, 0, keyBytes.length);
             keyBytes = paddedKeyBytes;
         }
 
+        // Create and return the HMAC SHA secret key
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }

@@ -3,13 +3,18 @@ package com.example.securityconfigurationjwtbcrypt.security.cotrollers;
 import com.example.securityconfigurationjwtbcrypt.security.dtos.AuthenticationRequestDTO;
 import com.example.securityconfigurationjwtbcrypt.security.dtos.AuthenticationResponseDTO;
 import com.example.securityconfigurationjwtbcrypt.security.dtos.RegistrationRequestDTO;
+import com.example.securityconfigurationjwtbcrypt.security.models.User;
 import com.example.securityconfigurationjwtbcrypt.security.services.AuthService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 /**
  * Controller class handling authentication-related endpoints.
@@ -29,10 +34,10 @@ public class AuthController {
      * @return ResponseEntity containing the authentication response DTO.
      */
     @PostMapping("register")
-    public ResponseEntity<AuthenticationResponseDTO> register(
+    public ResponseEntity<User> register(
             @RequestBody RegistrationRequestDTO request
     ) {
-        return ResponseEntity.ok(authService.register(request));
+            return ResponseEntity.ok(authService.register(request));
     }
 
     /**

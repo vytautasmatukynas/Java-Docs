@@ -38,4 +38,21 @@ public class DemoController {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Access denied. Insufficient privileges.");
         }
     }
+
+    @GetMapping
+    public ResponseEntity<String> sayBye() {
+        // Retrieve the current authentication information
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        // Check if the user has either "ADMIN" or "USER" role
+        if (authentication.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ADMIN"))) {
+
+            // User has sufficient privileges, return a greeting message
+            return ResponseEntity.ok("Bye, you are too secure here");
+
+        } else {
+            // User does not have sufficient privileges, throw Forbidden status exception
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Access denied. Insufficient privileges.");
+        }
+    }
 }

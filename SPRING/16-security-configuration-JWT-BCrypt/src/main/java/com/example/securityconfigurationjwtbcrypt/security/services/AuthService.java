@@ -33,7 +33,7 @@ public class AuthService {
      * @param request The registration request.
      * @return An authentication response containing a JWT token.
      */
-    public AuthenticationResponseDTO register(RegistrationRequestDTO request) {
+    public User register(RegistrationRequestDTO request) {
         // Create a new user entity
         User user = User.builder()
                 .firstName(request.getFirstName())
@@ -46,13 +46,7 @@ public class AuthService {
         // Save the user to the database
         userRepository.save(user);
 
-        // Generate a JWT token for the registered user
-        String jwtToken = jwtService.generateToken(user);
-
-        // Return an authentication response with the generated token
-        return AuthenticationResponseDTO.builder()
-                .token(jwtToken)
-                .build();
+        return user;
     }
 
     /**
