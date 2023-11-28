@@ -14,7 +14,7 @@ public class HomeController {
      Declare a dependency on the FirstService interface.
      This dependency will be injected by the Spring IoC (Inversion of Control) container.
      */
-    FirstService firstService;
+    private final FirstService firstService;
 
     /*
      Constructor-based dependency injection.
