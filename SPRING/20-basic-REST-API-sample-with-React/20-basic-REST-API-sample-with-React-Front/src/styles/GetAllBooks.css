@@ -1,0 +1,48 @@
+.table-header {
+  text-align: center;
+}
+
+.table-container {
+  text-align: center;
+  margin: 20px auto;
+  /* Center the container horizontally */
+}
+
+.styled-table {
+  border-collapse: collapse;
+  width: 80%;
+  /* Adjust the width as needed */
+  margin: auto;
+  /* Center the table horizontally */
+}
+
+.styled-table th,
+.styled-table td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.styled-table th {
+  background-color: #f2f2f2;
+}
+
+.blue-cell {
+  background-color: blue;
+  color: white;
+  /* Add any other styles you want to apply to cells with year 2024 */
+}
+
+.add-button {
+  width: 70px;
+  height: 30px;
+  margin-left: 10%;
+}
+
+.styled-table th.table-buttons {
+  text-align: center; /* or any other alignment you prefer */
+}
+
+.styled-table td.table-buttons {
+  text-align: center; /* Align content in the center for the corresponding cells */
+}
