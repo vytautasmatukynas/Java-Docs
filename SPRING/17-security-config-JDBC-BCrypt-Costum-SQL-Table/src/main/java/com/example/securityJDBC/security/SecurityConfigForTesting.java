@@ -35,12 +35,16 @@ public class SecurityConfigForTesting {
      */
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
+        // Creating an instance of JdbcUserDetailsManager, a Spring Security implementation for managing user details stored in a relational database.
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
+        // Configuring the query to retrieve user details (user_id, pw, active) from the 'members' table based on the username.
         jdbcUserDetailsManager.setUsersByUsernameQuery("select user_id, pw, active from members where user_id=?");
 
+        // Configuring the query to retrieve user authorities (roles) from the 'roles' table based on the username.
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("select user_id, role from roles where user_id=?");
 
+        // Returning the configured JdbcUserDetailsManager bean to be used by the Spring Security configuration.
         return jdbcUserDetailsManager;
     }
 
