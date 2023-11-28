@@ -11,7 +11,11 @@ import java.util.List;
 @RequestMapping("/api")
 public class EmployeeController {
 
-    EmployeeService employeeService;
+    public final EmployeeService employeeService;
+
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @Autowired
     public EmployeeController(EmployeeService theEmployeeService) {

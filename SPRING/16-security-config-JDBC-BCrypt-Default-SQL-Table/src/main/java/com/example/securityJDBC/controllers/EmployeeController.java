@@ -2,18 +2,19 @@ package com.example.securityJDBC.controllers;
 
 import com.example.securityJDBC.models.Employee;
 import com.example.securityJDBC.service.EmployeeService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
 public class EmployeeController {
 
     public final EmployeeService employeeService;
+
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @GetMapping("/employees")
     public List<Employee> findAll() {
