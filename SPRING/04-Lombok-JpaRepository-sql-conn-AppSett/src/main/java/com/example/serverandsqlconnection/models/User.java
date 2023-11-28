@@ -1,6 +1,7 @@
 package com.example.serverandsqlconnection.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -72,7 +73,7 @@ import lombok.NoArgsConstructor;
         * are properly closed.
 
     @RequiredArgsConstructor:
-        Description: Automatically generates a constructor for a class based on the non-null final fields or, in 
+        Description: Automatically generates a constructor for a class based on the non-null final fields or, in
         other words, fields marked with "final" and @NonNull annotations.
  */
 @Entity
@@ -122,13 +123,17 @@ public class User {
      * @Column(length = 50) - length attribute is used to define the length of a
      * String-valued database column. This is often used when mapping a Java String field to a
      * VARCHAR column in the database.
+     * @Email annotation is applied to the email field. If the value of the email field is not a valid
+     * email address, a validation error message with the specified message ("Please provide a valid email
+     * address") will be added to the binding result
      */
     @NotBlank(message = "Name is mandatory")
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String name;
 
     @NotBlank(message = "Email is mandatory")
-    @Column(length = 100)
+    @Email(message = "Please provide a valid email address")
+    @Column(length = 100, nullable = false)
     private String email;
 
     /*
