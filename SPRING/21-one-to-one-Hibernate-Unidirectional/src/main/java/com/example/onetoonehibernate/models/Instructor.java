@@ -27,8 +27,12 @@ public class Instructor {
 
     @Column(name = "email")
     private String email;
-
+    
     /*
+     * @OneToOne: This annotation is used to define a one-to-one relationship between entities.
+     * In this context, it suggests that the class where this annotation is used has a one-to-one
+     * relationship with another entity.
+     * 
      * CascadeType.ALL is used to propagate all operations (PERSIST, MERGE, REMOVE, REFRESH, DETACH)
      * from the owning entity (Instructor) to the target entity (InstructorDetail).
      * - PERSIST: When an Instructor is persisted, associated InstructorDetail will also be persisted.
