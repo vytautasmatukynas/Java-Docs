@@ -28,9 +28,25 @@ public class Instructor {
     @Column(name = "email")
     private String email;
 
-    // This annotation indicates a one-to-one relationship between the current entity and another entity.
+    /*
+     * CascadeType.ALL is used to propagate all operations (PERSIST, MERGE, REMOVE, REFRESH, DETACH)
+     * from the owning entity (Instructor) to the target entity (InstructorDetail).
+     * - PERSIST: When an Instructor is persisted, associated InstructorDetail will also be persisted.
+     * - MERGE: When an Instructor is merged, associated InstructorDetail will also be merged.
+     * - REMOVE: When an Instructor is removed, associated InstructorDetail will also be removed.
+     * - REFRESH: When an Instructor is refreshed, associated InstructorDetail will also be refreshed.
+     * - DETACH: When an Instructor is detached, associated InstructorDetail will also be detached.
+     *
+     * The @JoinColumn annotation is used to specify the mapping of the foreign key column in the
+     * Instructor table to the primary key column in the referenced table (InstructorDetail).
+     * - name: Specifies the name of the foreign key column in the Instructor table.
+     * - referencedColumnName: Specifies the name of the primary key column in the referenced table (InstructorDetail).
+     *
+     * @JoinColumn(name = "instructor_detail_id", referencedColumnName = "id") - this annotation specifies the column
+     * (instructor_detail_id) in the Instructor table that is used as a foreign key to establish the relationship.
+     * The foreign key column is linked to the primary key column (id) in the InstructorDetail table
+     */
     @OneToOne(cascade = CascadeType.ALL)
-    // This annotation specifies the column to be used for the mapping of the related entity.
     @JoinColumn(name = "instructor_detail_id", referencedColumnName = "id")
     // This private field represents an instance of the related entity (InstructorDetail).
     private InstructorDetail instructorDetail;

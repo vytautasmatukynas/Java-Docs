@@ -22,15 +22,30 @@ public class InstructorDetail {
     @Column(name = "hobby")
     private String hobby;
 
-    // Define a bidirectional one-to-one relationship with the "Instructor" entity.
-    // This entity represents additional details about an instructor.
-    // The "mappedBy" attribute specifies the inverse side of the relationship.
-    // The "mappedBy" refer to "instructorDetail" property in "Instructor" class.
-    // Can add "cascade = CascadeType.ALL" or something like that, then when you delete
-    // InstructorDetail you also can delete Instructor.
-    @OneToOne(mappedBy = "instructorDetail")
-    // In the "Instructor" entity, the "instructorDetail" field is the owning side.
-    @JsonIgnore  // Add this annotation to break the loop during JSON serialization
+    /*
+     * Define a bidirectional one-to-one relationship with the "Instructor" entity.
+     * This entity represents additional details about an instructor.
+     *
+     * - The "mappedBy" attribute specifies the inverse side of the relationship.
+     * - The "mappedBy" refers to the "instructorDetail" property in the "Instructor" class.
+     *   It indicates that the "instructorDetail" field in "Instructor" is the owning side of the relationship.
+     *
+     * - "cascade = CascadeType.ALL": When operations like persist, merge, remove, refresh, or detach
+     *   are performed on this entity, they will be cascaded to the associated "Instructor" entity.
+     *   For example, if you delete an "InstructorDetail," the associated "Instructor" will also be deleted.
+     *   Without "cascade = CascadeType.ALL" if you delete an "InstructorDetail," the associated "Instructor"
+     *   will not be deleted.
+     *
+     * - "fetch = FetchType.LAZY": Indicates that the associated "Instructor" entity will be fetched lazily,
+     *   meaning it won't be loaded from the database until explicitly accessed.
+     *
+     * - In the "Instructor" entity, the "instructorDetail" field is the owning side.
+     *
+     * - The @JsonIgnore annotation is added to break the loop during JSON serialization.
+     *   It prevents infinite recursion caused by the bidirectional relationship when serializing to JSON.
+     */
+    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Instructor instructor;
 
 
