@@ -1,12 +1,10 @@
 package com.example.onetomanyhibernate.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Entity class representing an Instructor in a bidirectional relationship with Course entities.
@@ -67,8 +65,15 @@ public class Instructor {
      * - fetch = FetchType.LAZY: Specifies the fetch strategy for the association.
      *   FetchType.LAZY means that the associated "Course" entities will be loaded lazily, i.e., they will be fetched
      *   from the database only when the "courses" collection is accessed, rather than eagerly along with the "Instructor" entity.
-     *   FetchType.LAZY - is default param in @OneToMany.
+     *   FetchType.LAZY is the default parameter in @OneToMany.
+     *
+     * - @JsonManagedReference: The @JsonManagedReference annotation is used to handle bidirectional
+     *   relationships during JSON serialization. It is placed on the "owning" side of the relationship
+     *   (the "one" side), and it helps Jackson to handle bidirectional references without causing infinite recursion
+     *   during JSON serialization. In this case, it indicates that the serialization of the "courses" collection in this
+     *   entity should be managed, and the "back" side (Course) should use @JsonBackReference to prevent infinite recursion.
      */
+    @JsonManagedReference
     @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Course> courses;
 

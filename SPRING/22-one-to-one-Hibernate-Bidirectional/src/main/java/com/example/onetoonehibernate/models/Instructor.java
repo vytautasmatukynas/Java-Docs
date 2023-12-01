@@ -1,5 +1,6 @@
 package com.example.onetoonehibernate.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 /**
@@ -32,7 +33,7 @@ public class Instructor {
      * @OneToOne: This annotation is used to define a one-to-one relationship between entities.
      * In this context, it suggests that the class where this annotation is used has a one-to-one
      * relationship with another entity.
-     * 
+     *
      * CascadeType.ALL is used to propagate all operations (PERSIST, MERGE, REMOVE, REFRESH, DETACH)
      * from the owning entity (Instructor) to the target entity (InstructorDetail).
      * - PERSIST: When an Instructor is persisted, associated InstructorDetail will also be persisted.
@@ -49,9 +50,16 @@ public class Instructor {
      * @JoinColumn(name = "instructor_detail_id", referencedColumnName = "id") - this annotation specifies the column
      * (instructor_detail_id) in the Instructor table that is used as a foreign key to establish the relationship.
      * The foreign key column is linked to the primary key column (id) in the InstructorDetail table
+     *
+     * - @JsonManagedReference: The @JsonManagedReference annotation is used to handle bidirectional
+     *   relationships during JSON serialization. It is placed on the "owning" side of the relationship
+     *   (the "one" side), and it helps Jackson to handle bidirectional references without causing infinite recursion
+     *   during JSON serialization. In this case, it indicates that the serialization of the "courses" collection in this
+     *   entity should be managed, and the "back" side (Course) should use @JsonBackReference to prevent infinite recursion.
      */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_detail_id", referencedColumnName = "id")
+    @JsonManagedReference
     // This private field represents an instance of the related entity (InstructorDetail).
     private InstructorDetail instructorDetail;
 

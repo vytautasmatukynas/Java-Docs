@@ -1,5 +1,6 @@
 package com.example.onetomanyhibernate.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -27,12 +28,15 @@ public class Course {
      *   it indicates that the "instructor_id" column in this entity's table is used to refer to the
      *   primary key of the related entity (Instructor).
      *
-     * - @JsonIgnore - The @JsonIgnore annotation is added to break the loop during JSON serialization.
-     *   It prevents infinite recursion caused by the bidirectional relationship when serializing to JSON.
+     * - @JsonBackReference: The @JsonBackReference annotation is used to handle bidirectional
+     *   relationships during JSON serialization. It is placed on the "back" side of the relationship
+     *   (the "many" side), and it prevents infinite recursion caused by the bidirectional relationship
+     *   when serializing to JSON. In this case, it indicates that the serialization of the "instructor"
+     *   property in this entity should be ignored to break the loop.
      */
     @ManyToOne
     @JoinColumn(name = "instructor_id")
-    @JsonIgnore
+    @JsonBackReference
     private Instructor instructor;
 
     public Course() { }

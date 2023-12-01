@@ -1,5 +1,6 @@
 package com.example.onetoonehibernate.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -43,9 +44,15 @@ public class InstructorDetail {
      *
      * - The @JsonIgnore annotation is added to break the loop during JSON serialization.
      *   It prevents infinite recursion caused by the bidirectional relationship when serializing to JSON.
+     *
+     * - @JsonBackReference: The @JsonBackReference annotation is used to handle bidirectional
+     *   relationships during JSON serialization. It is placed on the "back" side of the relationship
+     *   (the "many" side), and it prevents infinite recursion caused by the bidirectional relationship
+     *   when serializing to JSON. In this case, it indicates that the serialization of the "instructor"
+     *   property in this entity should be ignored to break the loop.
      */
     @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JsonBackReference
     private Instructor instructor;
 
 
