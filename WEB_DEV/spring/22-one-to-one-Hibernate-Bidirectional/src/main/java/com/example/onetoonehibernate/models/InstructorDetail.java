@@ -50,9 +50,13 @@ public class InstructorDetail {
      *   (the "many" side), and it prevents infinite recursion caused by the bidirectional relationship
      *   when serializing to JSON. In this case, it indicates that the serialization of the "instructor"
      *   property in this entity should be ignored to break the loop.
+     * 
+     * - @JsonIgnore annotation signals that this property should
+     *   be ignored during serialization and deserialization, typically used
+     *   in JSON processing.
      */
     @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonIgnore
     private Instructor instructor;
 
 

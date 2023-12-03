@@ -59,7 +59,6 @@ public class Instructor {
      */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_detail_id", referencedColumnName = "id")
-    @JsonManagedReference
     // This private field represents an instance of the related entity (InstructorDetail).
     private InstructorDetail instructorDetail;
 

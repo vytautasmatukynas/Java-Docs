@@ -36,7 +36,6 @@ public class Course {
      */
     @ManyToOne
     @JoinColumn(name = "instructor_id")
-    @JsonBackReference
     private Instructor instructor;
 
     public Course() { }

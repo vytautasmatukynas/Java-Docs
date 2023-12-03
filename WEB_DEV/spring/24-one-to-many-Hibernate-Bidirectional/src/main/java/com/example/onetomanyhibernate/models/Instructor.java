@@ -72,9 +72,13 @@ public class Instructor {
      *   (the "one" side), and it helps Jackson to handle bidirectional references without causing infinite recursion
      *   during JSON serialization. In this case, it indicates that the serialization of the "courses" collection in this
      *   entity should be managed, and the "back" side (Course) should use @JsonBackReference to prevent infinite recursion.
+     * 
+     * - @JsonIgnore annotation signals that this property should
+     *   be ignored during serialization and deserialization, typically used
+     *   in JSON processing.
      */
-    @JsonManagedReference
     @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Course> courses;
 
 
