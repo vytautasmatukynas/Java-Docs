@@ -15,15 +15,15 @@ public class App {
 	public static String capitalizeText(String name) {
 		if (name.contains(" ")) {
 	        Optional<String> formattedText = Arrays.stream(name.split(" "))
-										            .map(word -> Character.toUpperCase(word.charAt(0)) 
-										            			 + word.substring(1))
-										            .reduce((a, b) -> a + " " + b);
+						    .map(word -> Character.toUpperCase(word.charAt(0)) 
+									 + word.substring(1))
+						    .reduce((a, b) -> a + " " + b);
 	        
 	        return formattedText.orElse("");
 
 		} else {
 			String formattedText = Character.toUpperCase(name.charAt(0)) 
-									 + name.substring(1);
+							 + name.substring(1);
 
 			return formattedText;
 		}	
