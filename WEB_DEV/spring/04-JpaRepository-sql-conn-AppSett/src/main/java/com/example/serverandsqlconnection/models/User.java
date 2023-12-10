@@ -14,21 +14,6 @@ import lombok.NoArgsConstructor;
     By default, each entity class maps a database table with the same name in the default schema of
     database. You can customize this mapping using the name, schema, and catalog attributes of the @Table annotation.
     "@Table(name="user", schema="testdb")"
-
-    LOMBOK Annotations <----
-    @NoArgsConstructor, @RequiredArgsConstructor, and @AllArgsConstructor:
-        Description:
-            @NoArgsConstructor creates an empty constructor.
-            @RequiredArgsConstructor generates a constructor with final or @NonNull annotated properties.
-            @AllArgsConstructor creates a constructor with all class properties.
-
-    @Data:
-        Description: A composite annotation that includes @Getter, @Setter, @RequiredArgsConstructor,
-        * @ToString, and @EqualsAndHashCode. It provides comprehensive functionality for data classes.
-
-    @Cleanup:
-        Description: Automatically generates try-finally blocks, ensuring that resources (e.g., streams)
-        * are properly closed.
  */
 @Entity
 @Table(name = "user")
@@ -55,7 +40,7 @@ public class User {
      * GenerationType.TABLE - a separate table is used to store and generate unique key values. This is a more
      * portable solution but may be less efficient than other strategies.
      *
-     *GenerationType.NONE - no automatic generation of values. The application is responsible for setting the
+     * GenerationType.NONE - no automatic generation of values. The application is responsible for setting the
      * primary key before persisting the entity.
      */
     @Id
@@ -71,11 +56,14 @@ public class User {
      *
      * @Column(name = "user_name") - corresponding field in your Java entity class should be
      * mapped to a database column with the name "user_name".
+     * 
      * @Column(columnDefinition = "TEXT") - columnDefinition attribute allows you
-     * to provide a custom SQL fragment that is used during the creation of the table
+     * to provide a custom SQL fragment that is used during the creation of the table.
+     * 
      * @Column(length = 50) - length attribute is used to define the length of a
      * String-valued database column. This is often used when mapping a Java String field to a
      * VARCHAR column in the database.
+     * 
      * @Email annotation is applied to the email field. If the value of the email field is not a valid
      * email address, a validation error message with the specified message ("Please provide a valid email
      * address") will be added to the binding result
