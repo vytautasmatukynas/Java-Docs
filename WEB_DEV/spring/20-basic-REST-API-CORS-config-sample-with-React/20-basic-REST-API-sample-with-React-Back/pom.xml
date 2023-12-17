@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>20-basic-REST-API-sample-with-React-Back</artifactId>
+    <artifactId>20-basic-REST-API-CORS-config-sample-with-React</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>20-basic-REST-API-sample-with-React</name>
-    <description>20-basic-REST-API-sample-with-React</description>
+    <name>20-basic-REST-API-CORS-config-sample-with-React</name>
+    <description>20-basic-REST-API-CORS-config-sample-with-React</description>
     <properties>
         <java.version>17</java.version>
     </properties>
