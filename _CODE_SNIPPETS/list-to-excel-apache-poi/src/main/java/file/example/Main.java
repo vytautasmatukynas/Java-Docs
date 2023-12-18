@@ -35,27 +35,33 @@ public class Main {
      * @throws IOException If an I/O error occurs while creating the Excel file.
      */
     public static byte[] getOrdersWorkbook(List<Order> orders) throws IOException {
+        // Try-with-resources statement ensures that the workbook is closed at the end of the statement
         try (Workbook workbook = new XSSFWorkbook()) {
+            // Create a new sheet in the workbook named "Orders"
             Sheet sheet = workbook.createSheet("Orders");
 
+            // Create a header row in the sheet
             Row headerRow = sheet.createRow(0);
 
+            // Create a style for the header cells
             CellStyle headerStyle = workbook.createCellStyle();
             headerStyle.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
             headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
+            // Create a font for the header cells
             Font headerFont = workbook.createFont();
             headerFont.setBold(true);
             headerStyle.setFont(headerFont);
+
+            // Set border styles for the header cells
             headerStyle.setBorderTop(BorderStyle.THIN);
             headerStyle.setBorderBottom(BorderStyle.THIN);
             headerStyle.setBorderLeft(BorderStyle.THIN);
             headerStyle.setBorderRight(BorderStyle.THIN);
 
-            // Create header cells
+            // Create header cells with specified headers and apply the header style
             String[] cellHeaders = {"Order No.", "Order Name", "Client Name", "Phone Number", "Email",
                     "Term", "Status", "Order Price, €", "Comments", "Updated"};
-
             for (int i = 0; i < cellHeaders.length; i++) {
                 Cell headerCell = headerRow.createCell(i);
                 headerCell.setCellValue(cellHeaders[i]);
@@ -74,7 +80,7 @@ public class Main {
                     Cell cell = row.createCell(j);
                     String cellValue = "";
 
-                    // Switch statement to handle different columns
+                    // Switch statement to handle different columns and populate cell values
                     switch (j) {
                         case 0 -> cellValue = order.getOrderNumber();
                         case 1 -> cellValue = order.getOrderName();
@@ -88,8 +94,10 @@ public class Main {
                         case 9 -> cellValue = order.getOrderUpdateDate();
                     }
 
+                    // Set cell value
                     cell.setCellValue(cellValue);
 
+                    // Create a style for data cells and set border styles
                     CellStyle dataCellStyle = workbook.createCellStyle();
                     dataCellStyle.setBorderTop(BorderStyle.THIN);
                     dataCellStyle.setBorderBottom(BorderStyle.THIN);
@@ -110,6 +118,7 @@ public class Main {
                 sheet.setColumnWidth(i, columnWidths[i]);
             }
 
+            // Save the workbook to a byte array
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             workbook.write(byteArrayOutputStream);
 
@@ -124,20 +133,21 @@ public class Main {
      * @throws IOException If an I/O error occurs while saving the Excel file.
      */
     public static void saveToDesktopOrdersExcel(byte[] excelOrders) throws IOException {
+        // Get the current date in string format
         String dateNow = LocalDate.now().toString();
+
+        // Get the current timestamp in string format
         String timeStamp = String.valueOf(System.currentTimeMillis());
 
+        // Construct the file path on the desktop with a unique filename and ".xlsx" extension
         String desktopPathOrders = System.getProperty("user.home") +
-                String.format("\\Desktop\\orders-%s-%s.xlsx",
-                        dateNow,
-                        timeStamp);
+                String.format("\\Desktop\\orders-%s-%s.xlsx", dateNow, timeStamp);
 
+        // Create a Path object for the file
         Path filePathOrders = Paths.get(desktopPathOrders);
 
-        Files.write(filePathOrders,
-                excelOrders,
-                StandardOpenOption.CREATE,
-                StandardOpenOption.TRUNCATE_EXISTING);
+        // Write the Excel byte array to the file on the desktop
+        Files.write(filePathOrders, excelOrders, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
     }
 
 }
