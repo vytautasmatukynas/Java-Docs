@@ -67,13 +67,20 @@ public class JwtService {
         long nowMillis = System.currentTimeMillis();
         Date issuedAt = new Date(nowMillis);
 
-        // Set the expiration time to one hour from now
-        long expirationMillis = nowMillis + 3600 * 1000; // 1 hour in milliseconds
+        long expirationMillis = nowMillis + 24 * 3600 * 1000; // Set the token expiration 24 hours
         Date expiration = new Date(expirationMillis);
 
+        // Extract user roles from the UserDetails object
+        Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
+        Set<String> userRoles = authorities.stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toSet());
+
+        // Build the JWT token with claims and sign it
         return Jwts.builder()
                 .claims(extraClaims)
-                .subject(userDetails.getUsername())
+                .claim("roles", userRoles) // Include user roles in the JWT token
+                .subject(userDetails.getUsername()) // Include user username in the JWT token
                 .issuedAt(issuedAt)
                 .expiration(expiration)
                 .signWith(setSignInKey())
