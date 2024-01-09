@@ -26,17 +26,29 @@ public class RestConfig {
     @Bean annotation is used to indicate that a method produces a bean to
     be managed by the Spring container.
      */
+
     @Bean
     CommandLineRunner initData() {
-        /*
-        The code inside the lambda expression will be executed when the application starts.
-         */
         return args -> {
-           /*
-            This message ("This is SAMPLE MSG..!!") will be printed to
-            the log when the application starts
-            */
-          logger.info("This is SAMPLE MSG..!!");
+            // Logging an INFO message
+            logger.info("This is an INFO message.");
+
+            // Logging a DEBUG message
+            logger.debug("This is a DEBUG message.");
+
+            // Logging a WARN message
+            logger.warn("This is a WARN message.");
+
+            // Logging an ERROR message with an exception
+            try {
+                // Some code that may throw an exception
+                throw new RuntimeException("Simulating an error.");
+            } catch (Exception e) {
+                logger.error("This is an ERROR message with an exception.", e);
+            }
+
+            // Logging a TRACE message (less commonly used)
+            logger.trace("This is a TRACE message.");
         };
     }
 
