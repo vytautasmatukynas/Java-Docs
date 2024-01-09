@@ -51,14 +51,18 @@ public class Instructor {
      * (instructor_detail_id) in the Instructor table that is used as a foreign key to establish the relationship.
      * The foreign key column is linked to the primary key column (id) in the InstructorDetail table
      *
-     * - @JsonManagedReference: The @JsonManagedReference annotation is used to handle bidirectional
-     *   relationships during JSON serialization. It is placed on the "owning" side of the relationship
-     *   (the "one" side), and it helps Jackson to handle bidirectional references without causing infinite recursion
-     *   during JSON serialization. In this case, it indicates that the serialization of the "courses" collection in this
-     *   entity should be managed, and the "back" side (Course) should use @JsonBackReference to prevent infinite recursion.
+     * - The @JsonIgnore annotation is added to break the loop during JSON serialization.
+     *   It prevents infinite recursion caused by the bidirectional relationship when serializing to JSON.
+     *
+     * - @JsonBackReference: The @JsonBackReference annotation is used to handle bidirectional
+     *   relationships during JSON serialization. It is placed on the "back" side of the relationship
+     *   (the "many" side), and it prevents infinite recursion caused by the bidirectional relationship
+     *   when serializing to JSON. In this case, it indicates that the serialization of the "instructor"
+     *   property in this entity should be ignored to break the loop.
      */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_detail_id", referencedColumnName = "id")
+    @JsonManagedReference
     // This private field represents an instance of the related entity (InstructorDetail).
     private InstructorDetail instructorDetail;
 

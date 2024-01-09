@@ -28,14 +28,19 @@ public class Course {
      *   it indicates that the "instructor_id" column in this entity's table is used to refer to the
      *   primary key of the related entity (Instructor).
      *
-     * - @JsonBackReference: The @JsonBackReference annotation is used to handle bidirectional
-     *   relationships during JSON serialization. It is placed on the "back" side of the relationship
-     *   (the "many" side), and it prevents infinite recursion caused by the bidirectional relationship
-     *   when serializing to JSON. In this case, it indicates that the serialization of the "instructor"
-     *   property in this entity should be ignored to break the loop.
+     * - @JsonManagedReference: The @JsonManagedReference annotation is used to handle bidirectional
+     *   relationships during JSON serialization. It is placed on the "owning" side of the relationship
+     *   (the "one" side), and it helps Jackson to handle bidirectional references without causing infinite recursion
+     *   during JSON serialization. In this case, it indicates that the serialization of the "courses" collection in this
+     *   entity should be managed, and the "back" side (Course) should use @JsonBackReference to prevent infinite recursion.
+     * 
+     * - @JsonIgnore annotation signals that this property should
+     *   be ignored during serialization and deserialization, typically used
+     *   in JSON processing.
      */
     @ManyToOne
     @JoinColumn(name = "instructor_id")
+    @JsonIgnore
     private Instructor instructor;
 
     public Course() { }

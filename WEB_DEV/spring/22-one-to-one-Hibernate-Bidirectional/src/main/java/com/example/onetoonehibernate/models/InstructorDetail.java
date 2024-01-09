@@ -45,18 +45,16 @@ public class InstructorDetail {
      * - The @JsonIgnore annotation is added to break the loop during JSON serialization.
      *   It prevents infinite recursion caused by the bidirectional relationship when serializing to JSON.
      *
+     * - The @JsonIgnore annotation is added to break the loop during JSON serialization.
+     *   It prevents infinite recursion caused by the bidirectional relationship when serializing to JSON.
+     *
      * - @JsonBackReference: The @JsonBackReference annotation is used to handle bidirectional
      *   relationships during JSON serialization. It is placed on the "back" side of the relationship
      *   (the "many" side), and it prevents infinite recursion caused by the bidirectional relationship
      *   when serializing to JSON. In this case, it indicates that the serialization of the "instructor"
      *   property in this entity should be ignored to break the loop.
-     * 
-     * - @JsonIgnore annotation signals that this property should
-     *   be ignored during serialization and deserialization, typically used
-     *   in JSON processing.
      */
     @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
     private Instructor instructor;
 
 

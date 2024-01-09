@@ -78,7 +78,7 @@ public class Instructor {
      *   in JSON processing.
      */
     @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JsonManagedReference
     private List<Course> courses;
 
 
