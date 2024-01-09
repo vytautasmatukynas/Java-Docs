@@ -14,6 +14,17 @@ import lombok.NoArgsConstructor;
     By default, each entity class maps a database table with the same name in the default schema of
     database. You can customize this mapping using the name, schema, and catalog attributes of the @Table annotation.
     "@Table(name="user", schema="testdb")"
+
+    LOMBOK Annotations <----
+    @NoArgsConstructor, @RequiredArgsConstructor, and @AllArgsConstructor:
+        Description:
+            @NoArgsConstructor creates an empty constructor.
+            @RequiredArgsConstructor generates a constructor with final or @NonNull annotated properties.
+            @AllArgsConstructor creates a constructor with all class properties.
+
+    @Data:
+        Description: A composite annotation that includes @Getter, @Setter, @RequiredArgsConstructor,
+        * @ToString, and @EqualsAndHashCode. It provides comprehensive functionality for data classes.
  */
 @Entity
 @Table(name = "user")
