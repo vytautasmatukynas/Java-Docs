@@ -5,9 +5,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -26,6 +29,7 @@ import org.springframework.security.web.SecurityFilterChain;
  service requests for those beans
  */
 @Configuration
+@EnableWebSecurity
 public class SecurityConfigForTesting {
 
     /*
@@ -51,7 +55,7 @@ public class SecurityConfigForTesting {
          */
         UserDetails john = User.builder()
                 .username("john")
-                .password("{noop}pass123")
+                .password(passwordEncoder().encode("pass123"))
                 .roles("EMPLOYEE")
                 .build();
 
@@ -61,7 +65,7 @@ public class SecurityConfigForTesting {
          */
         UserDetails steve = User.builder()
                 .username("steve")
-                .password("{noop}pass123")
+                .password(passwordEncoder().encode("pass123"))
                 .roles("EMPLOYEE", "MANAGER")
                 .build();
 
@@ -71,7 +75,7 @@ public class SecurityConfigForTesting {
          */
         UserDetails bubbles = User.builder()
                 .username("bubbles")
-                .password("{noop}pass123")
+                .password(passwordEncoder().encode("pass123"))
                 .roles("EMPLOYEE", "MANAGER", "ADMIN")
                 .build();
 
@@ -99,20 +103,23 @@ public class SecurityConfigForTesting {
                         .requestMatchers(HttpMethod.PUT, "/api/employees").hasRole("MANAGER")
                         // Allow DELETE requests to "/api/employees/**" for users with role "ADMIN"
                         .requestMatchers(HttpMethod.DELETE, "/api/employees/**").hasRole("ADMIN")
-        );
-
-        // Use HTTP Basic authentication for securing the application
-        http.httpBasic(Customizer.withDefaults());
-
-        /*
+                )
+         /*
          Disable Cross-Site Request Forgery (CSRF) protection.
          This is generally not required for stateless REST APIs using POST, PUT, DELETE, and PATCH.
          "csrf -> csrf.disable()" = "AbstractHttpConfigurer::disable"
          */
-        http.csrf(AbstractHttpConfigurer::disable);
+        .csrf(AbstractHttpConfigurer::disable)
+        // Use HTTP Basic authentication for securing the application
+        .httpBasic(Customizer.withDefaults());
 
         // Build and return the configured HttpSecurity object
         return http.build();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 }
