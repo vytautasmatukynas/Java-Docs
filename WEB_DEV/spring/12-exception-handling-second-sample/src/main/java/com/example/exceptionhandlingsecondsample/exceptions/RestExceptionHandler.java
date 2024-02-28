@@ -10,25 +10,24 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.Collections;
 
+/**
+ * Global exception handler for RESTful services.
+ */
 @ControllerAdvice
-public class UserRestExceptionHandler extends ResponseEntityExceptionHandler {
+public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
+    /**
+     * Exception handler for handling all types of exceptions.
+     * @param ex The exception to handle.
+     * @param request The web request.
+     * @return ResponseEntity containing the ApiError object with appropriate status code and message.
+     */
     @ExceptionHandler({Exception.class})
-    public ResponseEntity<ApiErrorDTO> handleInternal(Exception ex, WebRequest request) {
-        ApiErrorDTO apiError = new ApiErrorDTO(
+    public ResponseEntity<ApiError> handleAll(Exception ex, WebRequest request) {
+        ApiError apiError = new ApiError(
                 HttpStatus.INTERNAL_SERVER_ERROR,
                 ex.getLocalizedMessage(),
-                Collections.singletonList("A general error has occurred"));
+                Collections.singletonList("A general error has occurred."));
         return new ResponseEntity<>(apiError, new HttpHeaders(), apiError.status());
     }
-
-    @ExceptionHandler({UserNotFoundException.class})
-    public ResponseEntity<ApiErrorDTO> handleNotFound(Exception ex, WebRequest request) {
-        ApiErrorDTO apiError = new ApiErrorDTO(
-                HttpStatus.NOT_FOUND,
-                ex.getLocalizedMessage(),
-                Collections.singletonList("A general error has occurred"));
-        return new ResponseEntity<>(apiError, new HttpHeaders(), apiError.status());
-    }
-
 }
